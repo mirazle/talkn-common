@@ -1,8 +1,14 @@
-import BootOption, { BootOption as BootOptionType, init as bootOptionInit } from './BootOption';
-import Ch, { Ch as ChType, init as chInit } from './Ch';
-import ChDetail, { ChDetail as ChDetailType, init as chDetailInit } from './ChDetail';
-import Post, { Post as PostType, init as postInit } from './Post';
-import Rank, { Rank as RankType, init as rankInit } from './Rank';
+import BootOption, {
+  BootOption as BootOptionType,
+  init as bootOptionInit,
+} from "./BootOption";
+import Ch, { Ch as ChType, init as chInit } from "./Ch";
+import ChDetail, {
+  ChDetail as ChDetailType,
+  init as chDetailInit,
+} from "./ChDetail";
+import Post, { Post as PostType, init as postInit } from "./Post";
+import Rank, { Rank as RankType, init as rankInit } from "./Rank";
 
 export type Types = {
   BootOption: BootOptionType;

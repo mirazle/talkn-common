@@ -74,18 +74,8 @@ export default class Sequence {
   static get map() {
     return {
       tune: {
-        requestPublicState: {},
-        requestPrivateState: {
-          thread: ["ch", "hasSlash", "protocol"],
-          app: [
-            "multistream",
-            "rootCh",
-            "dispThreadType",
-            "actioned",
-            "offsetFindId",
-            "isToggleMultistream",
-          ],
-        },
+        requestPublicState: { tuneCh: ["connection"] },
+        requestPrivateState: {},
         responseEmitState: { user: ["uid"], setting: "*", thread: "*" },
         responseBroadcastState: { thread: ["liveCnt", "ch"] },
       },
@@ -156,7 +146,7 @@ export default class Sequence {
         responseEmitState: { thread: "*" },
         responseBroadcastState: {},
       },
-      rank: {
+      fetchRank: {
         requestPublicState: {},
         requestPrivateState: {
           app: ["findType", "rootCh", "isRankDetailMode"],

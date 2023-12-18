@@ -1,5 +1,5 @@
-import ChModel from './Ch';
-import Ch from './Ch';
+import ChModel from "./Ch";
+import Ch from "./Ch";
 
 export type ChDetail = {
   id: string;
@@ -9,13 +9,13 @@ export type ChDetail = {
 export default class ChDetailModel {
   id: string;
   connection: string;
-  constructor(props: Partial<ChDetail> = init) {
-    this.id = props?.id || '';
-    this.connection = props?.connection || Ch.rootConnection;
+  constructor(params: Partial<ChDetail> = init) {
+    this.id = params?.id || "";
+    this.connection = params?.connection || Ch.rootConnection;
   }
 }
 
 export const init: ChDetail = {
-  id: '',
-  connection: '',
+  id: "",
+  connection: "",
 };

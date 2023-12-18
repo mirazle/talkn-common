@@ -1,11 +1,16 @@
-import ChModel from './Ch';
+import ChModel from "./Ch";
 
-export const typeSingle = 'Single';
-export const typeMulti = 'Multi';
-export const typeChild = 'Child';
-export const typeTimeline = 'Timeline';
-export const typeTimelineStock = 'TimelineStock';
-export type PostType = typeof typeSingle | typeof typeMulti | typeof typeChild | typeof typeTimeline | typeof typeTimelineStock;
+export const typeSingle = "Single";
+export const typeMulti = "Multi";
+export const typeChild = "Child";
+export const typeTimeline = "Timeline";
+export const typeTimelineStock = "TimelineStock";
+export type PostType =
+  | typeof typeSingle
+  | typeof typeMulti
+  | typeof typeChild
+  | typeof typeTimeline
+  | typeof typeTimelineStock;
 
 export type Post = {
   id: string;
@@ -20,19 +25,19 @@ export type Post = {
 };
 
 export default class PostModel {
-  constructor(props: Partial<Post> = init) {
-    return Object.assign(this, props);
+  constructor(params: Partial<Post> = init) {
+    return Object.assign(this, params);
   }
 }
 
 export const init: Post = {
-  id: '',
-  title: '',
-  connection: '',
-  content: '',
-  currentTime: '',
-  stampId: '',
-  favicon: '', // TODO url
+  id: "",
+  title: "",
+  connection: "",
+  content: "",
+  currentTime: "",
+  stampId: "",
+  favicon: "", // TODO url
   type: typeSingle,
-  updateTime: '',
+  updateTime: "",
 };
