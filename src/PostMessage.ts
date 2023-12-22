@@ -1,5 +1,5 @@
 import Sequence from "./Sequence";
-
+/*
 export default class PostMessage {
   // HANDLE CLIENT AND WSAPI
   static get HANDLE_CLIENT_AND_WSAPI() {
@@ -54,25 +54,28 @@ export default class PostMessage {
     return "MEDIA_CLIENT_TO_MEDIA_SERVER_TYPE";
   }
   static convertApiToClientActionType(actionType: string) {
-    if (actionType.indexOf(Sequence.API_TO_SERVER_REQUEST) === 0) {
+    if (actionType.startsWith(Sequence.API_TO_SERVER_REQUEST)) {
       return actionType.replace(
         Sequence.API_TO_SERVER_REQUEST,
         Sequence.API_TO_CLIENT_REQUEST
       );
     }
-    if (actionType.indexOf(Sequence.SERVER_TO_API_EMIT) === 0) {
+    if (actionType.startsWith(Sequence.SERVER_TO_API_EMIT)) {
       return actionType.replace(
         Sequence.SERVER_TO_API_EMIT,
         Sequence.API_TO_CLIENT_EMIT
       );
     }
-    if (actionType.indexOf(Sequence.SERVER_TO_API_BROADCAST) === 0) {
+    if (actionType.startsWith(Sequence.SERVER_TO_API_BROADCAST)) {
       return actionType.replace(
         Sequence.SERVER_TO_API_BROADCAST,
         Sequence.API_TO_CLIENT_BROADCAST
       );
     }
     return `API_TO_CLIENT[ACTION]:${actionType}`;
+  }
+  static convertExtToClientActionType(actionType: string) {
+    return `EXT_TO_CLIENT[ACTION]:${actionType}`;
   }
   static getMessageTypes(actionType: string): {
     ioType: string;
@@ -88,10 +91,8 @@ export default class PostMessage {
     const exeMethod = splited1[1];
     return { ioType, exeMethod };
   }
-  static convertExtToClientActionType(actionType: string) {
-    return `EXT_TO_CLIENT[ACTION]:${actionType}`;
-  }
 }
+*/
 
 // common.
 export const HandleMessageMethod = "handle";
@@ -105,14 +106,17 @@ export type IoTypeValues =
 export type IoType = {
   ioType: IoType;
 };
-export type MessageParamsFree = { key: string; value: any } | {};
-export type MessageParams = { key: string; value: any } | {};
 
-export type MessageClientAndWsApiType = {
+// export type MessageParams = { key: string; value: any };
+
+export type PostMessage = {
+  uid: string;
   method: string;
-  params?: MessageParams;
+  params?: any;
 };
 
+export type OnMessage = PostMessage;
+/*
 export type MessageClientAndExtType = {
   id: string;
   type:
@@ -134,3 +138,4 @@ export type MessageMediaClientAndMediaServerType = {
   params?: MessageParams;
   methodBack?: string;
 };
+*/
