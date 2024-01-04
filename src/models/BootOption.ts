@@ -2,12 +2,14 @@ export type BootOption = {
   hasSlash: boolean;
   protocol: string;
   host: string;
+  connection: string;
 };
 
 export const init: BootOption = {
   hasSlash: false,
-  protocol: '',
-  host: '',
+  protocol: "",
+  host: "",
+  connection: "",
 };
 
 export default class BootOptionModel {
