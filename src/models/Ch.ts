@@ -1,7 +1,7 @@
 import Sequence from "@common/Sequence";
 
 export type Ch = {
-  id: string;
+  tuneId: string;
   connection: string;
   connections: string[];
   type: string;
@@ -11,7 +11,7 @@ export type Ch = {
 };
 
 export const init: Ch = {
-  id: "",
+  tuneId: "",
   connection: "",
   connections: [],
   type: "",
@@ -21,6 +21,7 @@ export const init: Ch = {
 };
 
 export type GetChPropsParams = {
+  tuneId: string;
   host: string;
   connection: string;
   liveCnt: number;
@@ -41,6 +42,11 @@ export default class ChModel {
     return connection.endsWith(ChModel.rootConnection)
       ? connection
       : `${connection}${ChModel.rootConnection}`;
+  }
+  static getConnectionFromRequest(host: string, url: string): string {
+    const requestUrl = String(url);
+    const pathname = new URL(requestUrl, `https://${host}`).pathname;
+    return pathname.replace("/socket.io", ""); // TODO: コネクション取得ルールが不安定
   }
 
   static getFavicon(host: string) {
@@ -74,12 +80,13 @@ export default class ChModel {
   }
 
   static getChParams = (params: GetChPropsParams): Partial<Ch> => {
-    const { connection: _connection, host, liveCnt } = params;
+    const { tuneId, connection: _connection, host, liveCnt } = params;
     const connection = ChModel.getConnection(_connection);
     const connections = ChModel.getConnections(connection);
     const favicon = ChModel.getFavicon(host);
     const type = ChModel.getType(host);
     return {
+      tuneId,
       connection,
       connections,
       favicon,
