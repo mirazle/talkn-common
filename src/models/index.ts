@@ -1,9 +1,23 @@
-import BootOption, { BootOption as BootOptionType, init as bootOptionInit } from './BootOption';
-import Ch, { Ch as ChType, init as chInit } from './Ch';
-import ChDetail, { ChDetail as ChDetailType, init as chDetailInit } from './ChDetail';
-import Post, { Post as PostType, init as postInit } from './Post';
-import Rank, { Rank as RankType, init as rankInit } from './Rank';
-import Contract, { Contract as ContractType, init as contractInit } from './Contract';
+import BootOption, {
+  BootOption as BootOptionType,
+  init as bootOptionInit,
+} from "./BootOption";
+import Ch, { Ch as ChType, init as chInit } from "./Ch";
+import ChDetail, {
+  ChDetail as ChDetailType,
+  init as chDetailInit,
+} from "./ChDetail";
+import Post, { Post as PostType, init as postInit } from "./Post";
+import Rank, { Rank as RankType, init as rankInit } from "./Rank";
+import Contract, {
+  Contract as ContractType,
+  init as contractInit,
+} from "./Contract";
+
+import TuneOption, {
+  TuneOption as TuneOptionType,
+  init as tuneOptionInit,
+} from "./TuneOption";
 
 export type Types = {
   BootOption: BootOptionType;
@@ -12,6 +26,7 @@ export type Types = {
   Post: PostType;
   Rank: RankType;
   Contract: ContractType;
+  TuneOption: TuneOptionType;
 };
 
 export const inits = {
@@ -21,6 +36,7 @@ export const inits = {
   post: postInit,
   rank: rankInit,
   contract: contractInit,
+  tuneOption: tuneOptionInit,
 };
 
 export default {
@@ -30,4 +46,5 @@ export default {
   Rank,
   Post,
   Contract,
+  TuneOption,
 };
