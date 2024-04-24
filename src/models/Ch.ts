@@ -1,5 +1,5 @@
 import Sequence from "@common/Sequence";
-import { Contract } from "@common/models/Contract";
+import { ChConfig } from "@common/models/ChConfig";
 import define from "@common/define";
 import BootOptionModel from "./BootOption";
 
@@ -30,10 +30,17 @@ export type GetChPropsParams = {
   host: string;
   connection: Connection;
   liveCnt: number;
-  contract?: Contract;
+  chConfig: ChConfig | null;
+};
+
+export type GetConnectionOptions = {
+  isSelfExclude?: boolean;
+  isReverse?: boolean;
 };
 
 export type ParentConnection = string | undefined;
+export type TuneConnection = string;
+export type ChildConnection = string;
 export type Connection = string;
 
 export default class ChModel {
@@ -51,6 +58,11 @@ export default class ChModel {
     let replacedConnection = fixConnection.replace(/.$/, "");
     const lastSlashIndex = replacedConnection.lastIndexOf("/");
     return replacedConnection.substring(0, lastSlashIndex + 1);
+  }
+  static getTopConnection(connection: string): Connection {
+    if (connection === ChModel.rootConnection) return ChModel.rootConnection;
+    const sep = this.separetor;
+    return `${sep}${connection.split(sep)[1]}${sep}` as Connection;
   }
   static getConnection(connection: string) {
     return BootOptionModel.getConnection(connection);
@@ -70,8 +82,9 @@ export default class ChModel {
   }
   static getConnections(
     connection: ParentConnection | Connection,
-    isSelfExclude = false
+    options: GetConnectionOptions = { isSelfExclude: false, isReverse: false }
   ) {
+    const { isSelfExclude, isReverse } = options;
     let connections = [ChModel.rootConnection];
     if (connection && connection !== ChModel.rootConnection) {
       const connectionArr = connection
@@ -87,7 +100,24 @@ export default class ChModel {
         }
       });
     }
-    return connections;
+
+    if (isReverse) {
+      return connections.reverse();
+    } else {
+      return connections;
+    }
+  }
+
+  static getMyConnectionClass(
+    topConnection: Connection,
+    connections: Connection[]
+  ): Connection[] {
+    const myConnectionClass: Connection[] = [];
+    for (const i in connections) {
+      myConnectionClass.push(connections[i]);
+      if (connections[i] === topConnection) break;
+    }
+    return myConnectionClass;
   }
 
   static getType(host: string) {
@@ -97,21 +127,21 @@ export default class ChModel {
       : ChModel.plainType;
   }
 
-  static getServer(contract?: Contract) {
-    return contract &&
-      contract.nginx.proxyWssServer &&
-      contract.nginx.proxyWssPort
-      ? `${contract.nginx.proxyWssServer}:${contract.nginx.proxyWssPort}`
+  static getServer(chConfig: ChConfig | null) {
+    return chConfig &&
+      chConfig.nginx.proxyWssServer &&
+      chConfig.nginx.proxyWssPort
+      ? `${chConfig.nginx.proxyWssServer}:${chConfig.nginx.proxyWssPort}`
       : `127.0.0.1:${define.PORTS.IO_ROOT}`;
   }
 
   static getChParams = (params: GetChPropsParams): Partial<Ch> => {
-    const { tuneId, connection: _connection, host, liveCnt, contract } = params;
+    const { tuneId, connection: _connection, host, liveCnt, chConfig } = params;
     const connection = ChModel.getConnection(_connection);
     const connections = ChModel.getConnections(connection);
     const favicon = ChModel.getFavicon(host);
     const type = ChModel.getType(host);
-    const server = ChModel.getServer(contract);
+    const server = ChModel.getServer(chConfig);
     return {
       tuneId,
       connection,
