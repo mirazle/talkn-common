@@ -93,7 +93,7 @@ export default class ChConfigModel {
       : { ...chConfigJson, children: [], connection: topConnection };
   }
 
-  static getMyChRootsConfig(params: GetMyRootsParams): ChConfig[] {
+  static getChRootsConfig(params: GetMyRootsParams): ChConfig[] {
     const { chConfigJson, tuneConnection } = params;
     const reccurentFind = (
       children: ChConfigJson[],
@@ -128,8 +128,14 @@ export default class ChConfigModel {
     );
     return configs;
   }
-  static getMyChRootsConnections(params: GetMyRootsParams): Connection[] {
-    const myChRootsConfig = ChConfigModel.getMyChRootsConfig(params);
-    return myChRootsConfig.map((config) => config.connection);
+  static getRootsConnections(
+    params: GetMyRootsParams,
+    isExcludeTuneConnection = false
+  ): Connection[] {
+    const myRootsConfig = ChConfigModel.getChRootsConfig(params);
+    const myRootsConnections = myRootsConfig.map((config) => config.connection);
+    return isExcludeTuneConnection
+      ? myRootsConnections.filter((c) => c !== params.tuneConnection)
+      : myRootsConnections;
   }
 }

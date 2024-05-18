@@ -33,9 +33,14 @@ export type GetChPropsParams = {
   chConfig: ChConfig | null;
 };
 
-export type GetConnectionOptions = {
+export type GetConnectionsOptions = {
   isSelfExclude?: boolean;
-  isReverse?: boolean;
+  isSortUpperLayer?: boolean;
+};
+
+export const getConnectionsOptions = {
+  isSelfExclude: false,
+  isSortUpperLayer: true,
 };
 
 export type ParentConnection = string | undefined;
@@ -81,10 +86,10 @@ export default class ChModel {
       : `${host}${ChModel.rootConnection}favicon.ico`;
   }
   static getConnections(
-    connection: ParentConnection | Connection,
-    options: GetConnectionOptions = { isSelfExclude: false, isReverse: false }
+    connection: Connection,
+    options: GetConnectionsOptions = getConnectionsOptions
   ) {
-    const { isSelfExclude, isReverse } = options;
+    const { isSelfExclude, isSortUpperLayer } = options;
     let connections = [ChModel.rootConnection];
     if (connection && connection !== ChModel.rootConnection) {
       const connectionArr = connection
@@ -101,21 +106,38 @@ export default class ChModel {
       });
     }
 
-    if (isReverse) {
-      return connections.reverse();
+    if (isSortUpperLayer) {
+      connections.sort((a, b) => a.length - b.length);
     } else {
-      return connections;
+      connections.sort((a, b) => b.length - a.length);
     }
+
+    return connections;
   }
 
   static getMyConnectionClass(
-    topConnection: Connection,
-    connections: Connection[]
+    connections: Connection[],
+    startConnection: Connection,
+    endConnection?: Connection
   ): Connection[] {
     const myConnectionClass: Connection[] = [];
-    for (const i in connections) {
-      myConnectionClass.push(connections[i]);
-      if (connections[i] === topConnection) break;
+
+    const loopConnections = connections
+      .slice()
+      .sort((a, b) => a.length - b.length);
+    endConnection = endConnection
+      ? endConnection
+      : loopConnections[loopConnections.length - 1];
+
+    let isPush = false;
+    for (const i in loopConnections) {
+      if (connections[i] === startConnection) {
+        isPush = true;
+      }
+      if (connections[i] === endConnection) break;
+      if (isPush) {
+        myConnectionClass.push(connections[i]);
+      }
     }
     return myConnectionClass;
   }
