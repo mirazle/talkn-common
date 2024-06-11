@@ -16,7 +16,7 @@ const define: any = {
     DEVELOPMENT_CLIENT: 8080,
     REDIS: 6379,
     MONGO: 27017,
-    IO_LB: 10443,
+    IO_LB: 10440,
     IO_ROOT: 10444,
   },
   SUB_DOMAINS: {
