@@ -1,5 +1,10 @@
 {
-  "nginx": { "location": "/", "proxyWssServer": "127.0.0.1", "proxyWssPort": 10444 },
+  "gatewayListen": 10000,
+  "nginx": {
+    "location": "/",
+    "proxyWssServer": "127.0.0.1",
+    "proxyWssPort": 10444
+  },
   "redis": {
     "client": { "host": "127.0.0.1", "port": 6379 },
     "cluster": [
@@ -14,7 +19,12 @@
   "accept": { "rankAll": false },
   "children": [
     {
-      "nginx": { "location": "aa.com/", "proxyWssServer": "127.0.0.1", "proxyWssPort": 10445 },
+      "gatewayListen": 10001,
+      "nginx": {
+        "location": "aa.com/",
+        "proxyWssServer": "127.0.0.1",
+        "proxyWssPort": 10445
+      },
       "redis": {
         "client": { "host": "127.0.0.1", "port": 6379 },
         "cluster": [
@@ -29,7 +39,12 @@
       "accept": { "rankAll": false },
       "children": [
         {
-          "nginx": { "location": "11/22/33/", "proxyWssServer": "127.0.0.1", "proxyWssPort": 10446 },
+          "gatewayListen": null,
+          "nginx": {
+            "location": "11/22/33/",
+            "proxyWssServer": "127.0.0.1",
+            "proxyWssPort": 10446
+          },
           "redis": {
             "client": { "host": "127.0.0.1", "port": 6379 },
             "cluster": [
@@ -47,7 +62,12 @@
       ]
     },
     {
-      "nginx": { "location": "bb.com/", "proxyWssServer": "127.0.0.1", "proxyWssPort": 10447 },
+      "gatewayListen": 10002,
+      "nginx": {
+        "location": "bb.com/",
+        "proxyWssServer": "127.0.0.1",
+        "proxyWssPort": 10447
+      },
       "redis": {
         "client": { "host": "127.0.0.1", "port": 6379 },
         "cluster": [
@@ -62,7 +82,12 @@
       "accept": { "rankAll": false },
       "children": [
         {
-          "nginx": { "location": "11/22/", "proxyWssServer": "127.0.0.1", "proxyWssPort": 10448 },
+          "gatewayListen": null,
+          "nginx": {
+            "location": "11/22/",
+            "proxyWssServer": "127.0.0.1",
+            "proxyWssPort": 10448
+          },
           "redis": {
             "client": { "host": "127.0.0.1", "port": 6379 },
             "cluster": [
@@ -77,7 +102,12 @@
           "accept": { "rankAll": false },
           "children": [
             {
-              "nginx": { "location": "BBBB/", "proxyWssServer": "127.0.0.1", "proxyWssPort": 10449 },
+              "gatewayListen": null,
+              "nginx": {
+                "location": "BBBB/",
+                "proxyWssServer": "127.0.0.1",
+                "proxyWssPort": 10449
+              },
               "redis": {
                 "client": { "host": "127.0.0.1", "port": 6379 },
                 "cluster": [
@@ -97,7 +127,12 @@
       ]
     },
     {
-      "nginx": { "location": "cc.com/", "proxyWssServer": "127.0.0.1", "proxyWssPort": 10450 },
+      "gatewayListen": 10003,
+      "nginx": {
+        "location": "cc.com/",
+        "proxyWssServer": "127.0.0.1",
+        "proxyWssPort": 10450
+      },
       "redis": {
         "client": { "host": "127.0.0.1", "port": 6379 },
         "cluster": [
@@ -113,7 +148,12 @@
       "children": []
     },
     {
-      "nginx": { "location": "dd.com/", "proxyWssServer": "127.0.0.1", "proxyWssPort": 10451 },
+      "gatewayListen": 10004,
+      "nginx": {
+        "location": "dd.com/",
+        "proxyWssServer": "127.0.0.1",
+        "proxyWssPort": 10451
+      },
       "redis": {
         "client": { "host": "127.0.0.1", "port": 6379 },
         "cluster": [
@@ -128,7 +168,12 @@
       "accept": { "rankAll": false },
       "children": [
         {
-          "nginx": { "location": "a11/b22/", "proxyWssServer": "127.0.0.1", "proxyWssPort": 10452 },
+          "gatewayListen": null,
+          "nginx": {
+            "location": "a11/b22/",
+            "proxyWssServer": "127.0.0.1",
+            "proxyWssPort": 10452
+          },
           "redis": {
             "client": { "host": "127.0.0.1", "port": 6379 },
             "cluster": [
@@ -143,7 +188,12 @@
           "accept": { "rankAll": false },
           "children": [
             {
-              "nginx": { "location": "sBBBB/", "proxyWssServer": "127.0.0.1", "proxyWssPort": 10453 },
+              "gatewayListen": null,
+              "nginx": {
+                "location": "sBBBB/",
+                "proxyWssServer": "127.0.0.1",
+                "proxyWssPort": 10453
+              },
               "redis": {
                 "client": { "host": "127.0.0.1", "port": 6379 },
                 "cluster": [
