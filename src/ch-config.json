@@ -1,5 +1,5 @@
 {
-  "gatewayListen": 10000,
+  "gateway": 10000,
   "nginx": {
     "location": "/",
     "proxyWssServer": "127.0.0.1",
@@ -19,7 +19,7 @@
   "accept": { "rankAll": false },
   "children": [
     {
-      "gatewayListen": 10001,
+      "gateway": 10001,
       "nginx": {
         "location": "aa.com/",
         "proxyWssServer": "127.0.0.1",
@@ -39,7 +39,7 @@
       "accept": { "rankAll": false },
       "children": [
         {
-          "gatewayListen": null,
+          "gateway": null,
           "nginx": {
             "location": "11/22/33/",
             "proxyWssServer": "127.0.0.1",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "gatewayListen": 10002,
+      "gateway": 10002,
       "nginx": {
         "location": "bb.com/",
         "proxyWssServer": "127.0.0.1",
@@ -82,7 +82,7 @@
       "accept": { "rankAll": false },
       "children": [
         {
-          "gatewayListen": null,
+          "gateway": null,
           "nginx": {
             "location": "11/22/",
             "proxyWssServer": "127.0.0.1",
@@ -102,7 +102,7 @@
           "accept": { "rankAll": false },
           "children": [
             {
-              "gatewayListen": null,
+              "gateway": null,
               "nginx": {
                 "location": "BBBB/",
                 "proxyWssServer": "127.0.0.1",
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "gatewayListen": 10003,
+      "gateway": 10003,
       "nginx": {
         "location": "cc.com/",
         "proxyWssServer": "127.0.0.1",
@@ -148,7 +148,7 @@
       "children": []
     },
     {
-      "gatewayListen": 10004,
+      "gateway": 10004,
       "nginx": {
         "location": "dd.com/",
         "proxyWssServer": "127.0.0.1",
@@ -168,7 +168,7 @@
       "accept": { "rankAll": false },
       "children": [
         {
-          "gatewayListen": null,
+          "gateway": null,
           "nginx": {
             "location": "a11/b22/",
             "proxyWssServer": "127.0.0.1",
@@ -188,7 +188,7 @@
           "accept": { "rankAll": false },
           "children": [
             {
-              "gatewayListen": null,
+              "gateway": null,
               "nginx": {
                 "location": "sBBBB/",
                 "proxyWssServer": "127.0.0.1",
