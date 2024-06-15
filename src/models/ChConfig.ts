@@ -1,17 +1,17 @@
 import ChModel, { Connection } from './Ch';
 
-export type RedisOption = {
+export type CommunicationOption = {
   host: string;
   port: number;
 };
 
 export type Redis = {
-  cluster: RedisOption[];
-  client: RedisOption;
+  cluster: CommunicationOption[];
+  client: CommunicationOption;
 };
 
 export type ChConfigJson = {
-  gateway: number | null;
+  gateway: CommunicationOption | null;
   nginx: {
     location: string;
     proxyWssServer: string;
