@@ -5,3 +5,4 @@ isolate-*
 certs/*
 .DS_Store
 nginx/*
+./nginx/
