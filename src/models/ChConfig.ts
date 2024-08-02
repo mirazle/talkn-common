@@ -42,7 +42,7 @@ export const init: ChConfigJson = {
   gateway: null,
   nginx: {
     location: '',
-    proxyWssServer: '127.0.0.1',
+    proxyWssServer: 'localhost',
     proxyWssPort: 0,
   },
   redis: {
