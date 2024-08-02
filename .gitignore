@@ -4,5 +4,5 @@ logs/
 isolate-*
 certs/*
 .DS_Store
-nginx/*
-./nginx/
+*.crt
+*.key
