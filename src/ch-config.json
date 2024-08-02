@@ -1,5 +1,5 @@
 {
-  "gateway": {"host": "127.0.0.1", "port": 10000},
+  "gateway": { "host": "127.0.0.1", "port": 10000 },
   "nginx": {
     "location": "/",
     "proxyWssServer": "127.0.0.1",
@@ -19,7 +19,7 @@
   "accept": { "rankAll": false },
   "children": [
     {
-      "gateway": {"host": "127.0.0.1", "port": 10001},
+      "gateway": { "host": "127.0.0.1", "port": 10001 },
       "nginx": {
         "location": "aa.com/",
         "proxyWssServer": "127.0.0.1",
@@ -27,14 +27,7 @@
       },
       "redis": {
         "client": { "host": "127.0.0.1", "port": 6379 },
-        "cluster": [
-          { "host": "127.0.0.1", "port": 6391 },
-          { "host": "127.0.0.1", "port": 6392 },
-          { "host": "127.0.0.1", "port": 6393 },
-          { "host": "127.0.0.1", "port": 6394 },
-          { "host": "127.0.0.1", "port": 6395 },
-          { "host": "127.0.0.1", "port": 6396 }
-        ]
+        "cluster": []
       },
       "accept": { "rankAll": false },
       "children": [
@@ -47,14 +40,7 @@
           },
           "redis": {
             "client": { "host": "127.0.0.1", "port": 6379 },
-            "cluster": [
-              { "host": "127.0.0.1", "port": 6401 },
-              { "host": "127.0.0.1", "port": 6402 },
-              { "host": "127.0.0.1", "port": 6403 },
-              { "host": "127.0.0.1", "port": 6404 },
-              { "host": "127.0.0.1", "port": 6405 },
-              { "host": "127.0.0.1", "port": 6406 }
-            ]
+            "cluster": []
           },
           "accept": { "rankAll": false },
           "children": []
@@ -62,7 +48,7 @@
       ]
     },
     {
-      "gateway": {"host": "127.0.0.1", "port": 10002},
+      "gateway": { "host": "127.0.0.1", "port": 10002 },
       "nginx": {
         "location": "bb.com/",
         "proxyWssServer": "127.0.0.1",
@@ -70,14 +56,7 @@
       },
       "redis": {
         "client": { "host": "127.0.0.1", "port": 6379 },
-        "cluster": [
-          { "host": "127.0.0.1", "port": 6411 },
-          { "host": "127.0.0.1", "port": 6412 },
-          { "host": "127.0.0.1", "port": 6413 },
-          { "host": "127.0.0.1", "port": 6414 },
-          { "host": "127.0.0.1", "port": 6415 },
-          { "host": "127.0.0.1", "port": 6416 }
-        ]
+        "cluster": []
       },
       "accept": { "rankAll": false },
       "children": [
@@ -90,14 +69,7 @@
           },
           "redis": {
             "client": { "host": "127.0.0.1", "port": 6379 },
-            "cluster": [
-              { "host": "127.0.0.1", "port": 6421 },
-              { "host": "127.0.0.1", "port": 6422 },
-              { "host": "127.0.0.1", "port": 6423 },
-              { "host": "127.0.0.1", "port": 6424 },
-              { "host": "127.0.0.1", "port": 6425 },
-              { "host": "127.0.0.1", "port": 6426 }
-            ]
+            "cluster": []
           },
           "accept": { "rankAll": false },
           "children": [
@@ -110,14 +82,7 @@
               },
               "redis": {
                 "client": { "host": "127.0.0.1", "port": 6379 },
-                "cluster": [
-                  { "host": "127.0.0.1", "port": 6431 },
-                  { "host": "127.0.0.1", "port": 6432 },
-                  { "host": "127.0.0.1", "port": 6433 },
-                  { "host": "127.0.0.1", "port": 6434 },
-                  { "host": "127.0.0.1", "port": 6435 },
-                  { "host": "127.0.0.1", "port": 6436 }
-                ]
+                "cluster": []
               },
               "accept": { "rankAll": false },
               "children": []
@@ -127,7 +92,7 @@
       ]
     },
     {
-      "gateway": {"host": "127.0.0.1", "port": 10003},
+      "gateway": { "host": "127.0.0.1", "port": 10003 },
       "nginx": {
         "location": "cc.com/",
         "proxyWssServer": "127.0.0.1",
@@ -135,20 +100,13 @@
       },
       "redis": {
         "client": { "host": "127.0.0.1", "port": 6379 },
-        "cluster": [
-          { "host": "127.0.0.1", "port": 6441 },
-          { "host": "127.0.0.1", "port": 6442 },
-          { "host": "127.0.0.1", "port": 6443 },
-          { "host": "127.0.0.1", "port": 6444 },
-          { "host": "127.0.0.1", "port": 6445 },
-          { "host": "127.0.0.1", "port": 6446 }
-        ]
+        "cluster": []
       },
       "accept": { "rankAll": false },
       "children": []
     },
     {
-      "gateway": {"host": "127.0.0.1", "port": 10004},
+      "gateway": { "host": "127.0.0.1", "port": 10004 },
       "nginx": {
         "location": "dd.com/",
         "proxyWssServer": "127.0.0.1",
@@ -156,14 +114,7 @@
       },
       "redis": {
         "client": { "host": "127.0.0.1", "port": 6379 },
-        "cluster": [
-          { "host": "127.0.0.1", "port": 6451 },
-          { "host": "127.0.0.1", "port": 6452 },
-          { "host": "127.0.0.1", "port": 6453 },
-          { "host": "127.0.0.1", "port": 6454 },
-          { "host": "127.0.0.1", "port": 6455 },
-          { "host": "127.0.0.1", "port": 6456 }
-        ]
+        "cluster": []
       },
       "accept": { "rankAll": false },
       "children": [
@@ -176,14 +127,7 @@
           },
           "redis": {
             "client": { "host": "127.0.0.1", "port": 6379 },
-            "cluster": [
-              { "host": "127.0.0.1", "port": 6461 },
-              { "host": "127.0.0.1", "port": 6462 },
-              { "host": "127.0.0.1", "port": 6463 },
-              { "host": "127.0.0.1", "port": 6464 },
-              { "host": "127.0.0.1", "port": 6465 },
-              { "host": "127.0.0.1", "port": 6466 }
-            ]
+            "cluster": []
           },
           "accept": { "rankAll": false },
           "children": [
