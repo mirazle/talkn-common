@@ -2,26 +2,34 @@
 # CH example: localhost, host.docker.internal
 
 # 引数がなければエラーを表示して終了
-if [ "$#" -eq 0 ]; then
-  echo "Usage: $0 <CN> <alt_name1> <alt_name2> <alt_name3> ..."
-  exit 1
-fi
+#if [ "$#" -eq 0 ]; then
+#  echo "Usage: $0 <CN> <alt_name1> <alt_name2> <alt_name3> ..."
+#  exit 1
+#fi
 
 # CNと代替名リストを取得
-CN=$1
+CN=${1:-"/localhost/"}
 shift
 ALT_NAMES=("$@")
 
 # 証明書ディレクトリの作成
-CERT_BASE_DIR=./common/nginx
-mkdir -p "$CERT_BASE_DIR"
+CERT_BASE_DIR=./nginx
+if [ ! -d "$CERT_BASE_DIR" ]; then
+  mkdir -p "$CERT_BASE_DIR"
+fi
 
-CERT_CH_DIR="$CERT_BASE_DIR/${CN}"
-mkdir -p "$CERT_CH_DIR"
+CERT_CH_DIR="${CERT_BASE_DIR}${CN}"
 
-KEY_FILE="$CERT_CH_DIR/openssl.key"
-CRT_FILE="$CERT_CH_DIR/openssl.crt"
-CONF_FILE="$CERT_CH_DIR/openssl.cnf"
+# ディレクトリが存在しない場合のみ作成
+if [ ! -d "$CERT_CH_DIR" ]; then
+  mkdir -p "$CERT_CH_DIR"
+fi
+
+echo $CERT_CH_DIR
+
+KEY_FILE="${CERT_CH_DIR}openssl.key"
+CRT_FILE="${CERT_CH_DIR}openssl.crt"
+CONF_FILE="${CERT_CH_DIR}openssl.cnf"
 
 cat > "$CONF_FILE" <<EOF
 [req]
@@ -40,14 +48,17 @@ subjectAltName = @alt_names
 subjectAltName = @alt_names
 
 [alt_names]
+DNS.1 = localhost
 EOF
 
 # 代替名を追加
-i=1
-for alt_name in "${ALT_NAMES[@]}"; do
-  echo "DNS.$i = $alt_name" >> "$CONF_FILE"
-  ((i++))
-done
+if [[ ${#ALT_NAMES[@]} -gt 0 ]]; then
+  i=1
+  for alt_name in "${ALT_NAMES[@]}"; do
+    echo "DNS.$i = $alt_name" >> "$CONF_FILE"
+    ((i++))
+  done
+fi
 
 # 証明書の生成
 openssl req -x509 -nodes -days 60 -newkey rsa:2048 \

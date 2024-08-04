@@ -5,7 +5,7 @@ x509_extensions    = v3_ca
 prompt             = no
 
 [req_distinguished_name]
-CN = localhost
+CN = /localhost/
 
 [req_ext]
 subjectAltName = @alt_names

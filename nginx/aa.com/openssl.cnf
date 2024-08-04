@@ -5,7 +5,7 @@ x509_extensions    = v3_ca
 prompt             = no
 
 [req_distinguished_name]
-CN = host.docker.internal
+CN = /aa.com/
 
 [req_ext]
 subjectAltName = @alt_names
@@ -15,6 +15,3 @@ subjectAltName = @alt_names
 
 [alt_names]
 DNS.1 = localhost
-DNS.2 = aa.com
-DNS.3 = bb.com
-DNS.4 = cc.com
