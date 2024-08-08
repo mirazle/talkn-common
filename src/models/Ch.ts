@@ -10,7 +10,7 @@ export type Ch = {
   type: string;
   liveCnt: number;
   favicon: string;
-  server: string;
+  gateway: string;
   active: boolean;
 };
 
@@ -21,7 +21,7 @@ export const init: Ch = {
   type: "",
   liveCnt: 0,
   favicon: "",
-  server: "",
+  gateway: "",
   active: false,
 };
 
@@ -163,7 +163,7 @@ export default class ChModel {
     const connections = ChModel.getConnections(connection);
     const favicon = ChModel.getFavicon(host);
     const type = ChModel.getType(host);
-    const server = ChModel.getServer(chConfig);
+    const gateway = ChModel.getServer(chConfig);
     return {
       tuneId,
       connection,
@@ -171,7 +171,7 @@ export default class ChModel {
       favicon,
       type,
       liveCnt,
-      server,
+      gateway,
     };
   };
 }
