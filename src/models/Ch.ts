@@ -171,7 +171,7 @@ export default class ChModel {
     const connections = ChModel.getConnections(connection);
     const favicon = ChModel.getFavicon(host);
     const type = ChModel.getType(host);
-    const gateway = ChModel.getServer(chConfig);
+    const gateway = ChModel.getGateway(chConfig);
     const server = ChModel.getServer(chConfig);
     return {
       tuneId,
