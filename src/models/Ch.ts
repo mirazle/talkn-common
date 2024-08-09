@@ -158,10 +158,8 @@ export default class ChModel {
   }
 
   static getServer(chConfig: ChConfig | null) {
-    return chConfig &&
-      chConfig.nginx.proxyWssServer &&
-      chConfig.nginx.proxyWssPort
-      ? `${chConfig.nginx.proxyWssServer}:${chConfig.nginx.proxyWssPort}`
+    return chConfig && chConfig.nginx.host && chConfig.nginx.port
+      ? `${chConfig.nginx.host}:${chConfig.nginx.port}`
       : `127.0.0.1:${define.PORTS.IO_ROOT}`;
   }
 
