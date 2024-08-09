@@ -11,6 +11,7 @@ export type Ch = {
   liveCnt: number;
   favicon: string;
   gateway: string;
+  server: string;
   active: boolean;
 };
 
@@ -22,6 +23,7 @@ export const init: Ch = {
   liveCnt: 0,
   favicon: "",
   gateway: "",
+  server: "",
   active: false,
 };
 
@@ -149,6 +151,12 @@ export default class ChModel {
       : ChModel.plainType;
   }
 
+  static getGateway(chConfig: ChConfig | null) {
+    return chConfig && chConfig.gateway?.host && chConfig.gateway.port
+      ? `${chConfig.gateway.host}:${chConfig.gateway.port}`
+      : `127.0.0.1:${define.PORTS.IO_ROOT}`;
+  }
+
   static getServer(chConfig: ChConfig | null) {
     return chConfig &&
       chConfig.nginx.proxyWssServer &&
@@ -164,6 +172,7 @@ export default class ChModel {
     const favicon = ChModel.getFavicon(host);
     const type = ChModel.getType(host);
     const gateway = ChModel.getServer(chConfig);
+    const server = ChModel.getServer(chConfig);
     return {
       tuneId,
       connection,
@@ -172,6 +181,7 @@ export default class ChModel {
       type,
       liveCnt,
       gateway,
+      server,
     };
   };
 }
