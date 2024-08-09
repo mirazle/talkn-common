@@ -14,8 +14,8 @@ export type ChConfigJson = {
   gateway: CommunicationOption | null;
   nginx: {
     location: string;
-    proxyWssServer: string;
-    proxyWssPort: number;
+    host: string;
+    port: number;
   };
   redis: Redis;
   accept: {
@@ -42,8 +42,8 @@ export const init: ChConfigJson = {
   gateway: null,
   nginx: {
     location: '',
-    proxyWssServer: 'localhost',
-    proxyWssPort: 0,
+    host: 'localhost',
+    port: 0,
   },
   redis: {
     cluster: [],
@@ -113,6 +113,13 @@ export default class ChConfigModel {
     ]);
     return configs;
   }
+
+  static getGateway(params: GetMyRootsParams): CommunicationOption {
+    const chRootsConfig = ChConfigModel.getChRootsConfig(params);
+    const gateway = chRootsConfig[1] ? chRootsConfig[1].gateway : chRootsConfig[0].gateway;
+    return gateway as CommunicationOption;
+  }
+
   static getRootsConnections(params: GetMyRootsParams, isExcludeTuneConnection = false): Connection[] {
     const myRootsConfig = ChConfigModel.getChRootsConfig(params);
     const myRootsConnections = myRootsConfig.map((config) => config.connection);
