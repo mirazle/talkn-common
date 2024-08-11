@@ -1,7 +1,7 @@
-import Sequence from "@common/Sequence";
-import { ChConfig } from "@common/models/ChConfig";
-import define from "@common/define";
-import BootOptionModel from "./BootOption";
+import Sequence from '@common/Sequence';
+import { ChConfig } from '@common/models/ChConfig';
+import define from '@common/define';
+import BootOptionModel from './BootOption';
 
 export type Ch = {
   tuneId: string;
@@ -16,14 +16,14 @@ export type Ch = {
 };
 
 export const init: Ch = {
-  tuneId: "",
-  connection: "",
+  tuneId: '',
+  connection: '',
   connections: [],
-  type: "",
+  type: '',
   liveCnt: 0,
-  favicon: "",
-  gateway: "",
-  server: "",
+  favicon: '',
+  gateway: '',
+  server: '',
   active: false,
 };
 
@@ -51,19 +51,19 @@ export type ChildConnection = string;
 export type Connection = string;
 
 export default class ChModel {
-  static separetor = "/";
+  static separetor = '/';
   static rootConnection = ChModel.separetor;
-  static connectionSeparator = "/";
-  static defaultProtocol = "talkn::";
-  static defultType = "text/html";
-  static plainType = "plain";
+  static connectionSeparator = '/';
+  static defaultProtocol = 'talkn::';
+  static defultType = 'text/html';
+  static plainType = 'plain';
   constructor(params: Partial<Ch> = init) {
     return Object.assign(this, params);
   }
   static getParentConnection(fixConnection: string): ParentConnection {
     if (fixConnection === ChModel.rootConnection) return undefined;
-    let replacedConnection = fixConnection.replace(/.$/, "");
-    const lastSlashIndex = replacedConnection.lastIndexOf("/");
+    let replacedConnection = fixConnection.replace(/.$/, '');
+    const lastSlashIndex = replacedConnection.lastIndexOf('/');
     return replacedConnection.substring(0, lastSlashIndex + 1);
   }
   static getTopConnection(connection: string): Connection {
@@ -77,27 +77,20 @@ export default class ChModel {
   static getConnectionFromRequest(host: string, url: string): string {
     const requestUrl = String(url);
     const pathname = new URL(requestUrl, `https://${host}`).pathname;
-    const con = pathname.replace("/socket.io", ""); // TODO: コネクション取得ルールが不安定
+    const con = pathname.replace('/socket.io', ''); // TODO: コネクション取得ルールが不安定
     const connection = decodeURIComponent(con);
     return connection;
   }
 
   static getFavicon(host: string) {
-    return host.endsWith(ChModel.rootConnection)
-      ? `${host}favicon.ico`
-      : `${host}${ChModel.rootConnection}favicon.ico`;
+    return host.endsWith(ChModel.rootConnection) ? `${host}favicon.ico` : `${host}${ChModel.rootConnection}favicon.ico`;
   }
-  static getConnections(
-    connection: Connection,
-    options: GetConnectionsOptions = getConnectionsOptions
-  ) {
+  static getConnections(connection: Connection, options: GetConnectionsOptions = getConnectionsOptions) {
     const { isSelfExclude, isSortUpperLayer } = options;
     let connections = [ChModel.rootConnection];
     if (connection && connection !== ChModel.rootConnection) {
-      const connectionArr = connection
-        .split(ChModel.connectionSeparator)
-        .filter((part) => part !== "");
-      let connectionPart = "";
+      const connectionArr = connection.split(ChModel.connectionSeparator).filter((part) => part !== '');
+      let connectionPart = '';
 
       connectionArr.forEach((segment) => {
         connectionPart += `${this.separetor}${segment}`;
@@ -117,19 +110,11 @@ export default class ChModel {
     return connections;
   }
 
-  static getMyConnectionClass(
-    connections: Connection[],
-    startConnection: Connection,
-    endConnection?: Connection
-  ): Connection[] {
+  static getMyConnectionClass(connections: Connection[], startConnection: Connection, endConnection?: Connection): Connection[] {
     const myConnectionClass: Connection[] = [];
 
-    const loopConnections = connections
-      .slice()
-      .sort((a, b) => a.length - b.length);
-    endConnection = endConnection
-      ? endConnection
-      : loopConnections[loopConnections.length - 1];
+    const loopConnections = connections.slice().sort((a, b) => a.length - b.length);
+    endConnection = endConnection ? endConnection : loopConnections[loopConnections.length - 1];
 
     let isPush = false;
     for (const i in loopConnections) {
@@ -145,10 +130,7 @@ export default class ChModel {
   }
 
   static getType(host: string) {
-    return host.startsWith(Sequence.HTTPS_PROTOCOL) ||
-      host.startsWith(Sequence.HTTP_PROTOCOL)
-      ? ChModel.defultType
-      : ChModel.plainType;
+    return host.startsWith(Sequence.HTTPS_PROTOCOL) || host.startsWith(Sequence.HTTP_PROTOCOL) ? ChModel.defultType : ChModel.plainType;
   }
 
   static getGateway(chConfig: ChConfig | null) {
