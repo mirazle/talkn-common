@@ -3,7 +3,7 @@
   "nginx": {
     "location": "/",
     "host": "localhost",
-    "port": 10444
+    "port": 443
   },
   "redis": {
     "client": { "host": "localhost", "port": 6379 },
@@ -16,7 +16,7 @@
       "nginx": {
         "location": "aa.com/",
         "host": "localhost",
-        "port": 10445
+        "port": 443
       },
       "redis": {
         "client": { "host": "localhost", "port": 6379 },
@@ -29,7 +29,7 @@
           "nginx": {
             "location": "11/22/33/",
             "host": "localhost",
-            "port": 10446
+            "port": 443
           },
           "redis": {
             "client": { "host": "localhost", "port": 6379 },
@@ -45,7 +45,7 @@
       "nginx": {
         "location": "bb.com/",
         "host": "localhost",
-        "port": 10447
+        "port": 443
       },
       "redis": {
         "client": { "host": "localhost", "port": 6379 },
@@ -58,7 +58,7 @@
           "nginx": {
             "location": "11/22/",
             "host": "localhost",
-            "port": 10448
+            "port": 443
           },
           "redis": {
             "client": { "host": "localhost", "port": 6379 },
@@ -71,7 +71,7 @@
               "nginx": {
                 "location": "BBBB/",
                 "host": "localhost",
-                "port": 10449
+                "port": 443
               },
               "redis": {
                 "client": { "host": "localhost", "port": 6379 },
@@ -89,7 +89,7 @@
       "nginx": {
         "location": "cc.com/",
         "host": "localhost",
-        "port": 10450
+        "port": 443
       },
       "redis": {
         "client": { "host": "localhost", "port": 6379 },
@@ -103,7 +103,7 @@
       "nginx": {
         "location": "dd.com/",
         "host": "localhost",
-        "port": 10451
+        "port": 443
       },
       "redis": {
         "client": { "host": "localhost", "port": 6379 },
@@ -116,7 +116,7 @@
           "nginx": {
             "location": "a11/b22/",
             "host": "localhost",
-            "port": 10452
+            "port": 443
           },
           "redis": {
             "client": { "host": "localhost", "port": 6379 },
@@ -129,7 +129,7 @@
               "nginx": {
                 "location": "sBBBB/",
                 "host": "localhost",
-                "port": 10453
+                "port": 443
               },
               "redis": {
                 "client": { "host": "localhost", "port": 6379 },
