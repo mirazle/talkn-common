@@ -11,14 +11,6 @@ container_name_ch=$( [[ "$ch" == '/' ]] && echo "root" || echo "$ch" | sed 's|^/
 # Generate compose.gateway.yml
 cat <<EOF >$output_file
 services:
-  redis:
-    container_name: talkn-ch-server-redis
-    image: redis:6.2
-    volumes:
-      - redis-data:/data
-    networks:
-      - talkn-global
-
   io-${container_name_ch}:
     container_name: talkn-ch-server-io-${container_name_ch}
     image: node:22.2.0

@@ -1,12 +1,4 @@
 services:
-  redis:
-    container_name: talkn-ch-server-redis
-    image: redis:6.2
-    volumes:
-      - redis-data:/data
-    networks:
-      - talkn-global
-
   io-bb.com:
     container_name: talkn-ch-server-io-bb.com
     image: node:22.2.0
