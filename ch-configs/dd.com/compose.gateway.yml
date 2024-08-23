@@ -1,0 +1,24 @@
+services:
+  dd.com:
+    container_name: talkn-ch-gateway-dd.com
+    image: nginx:alpine
+    volumes:
+      - /Users/hiroyukimiyazaki/talkn-ch-gateway/common/ch-configs/dd.com/nginx.conf:/etc/nginx/nginx.conf
+      - /Users/hiroyukimiyazaki/talkn-ch-gateway/common/ch-configs/dd.com/openssl.crt:/etc/ssl/certs/openssl.crt
+      - /Users/hiroyukimiyazaki/talkn-ch-gateway/common/ch-configs/dd.com/openssl.key:/etc/ssl/certs/openssl.key
+    ports:
+      - "10004:443"
+    environment:
+      - IS_DOCKER=true
+      - NODE_ENV=development
+    command: ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx.conf"]
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+    networks:
+      - talkn-global
+
+networks:
+  talkn-global:
+    external: true

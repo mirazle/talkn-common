@@ -1,11 +1,12 @@
 [req]
+
 distinguished_name = req_distinguished_name
 req_extensions     = req_ext
 x509_extensions    = v3_ca
 prompt             = no
 
 [req_distinguished_name]
-CN = /
+CN = dd.com
 
 [req_ext]
 subjectAltName = @alt_names
