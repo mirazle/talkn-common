@@ -33,9 +33,6 @@ services:
     networks:
       - talkn-global
 
-volumes:
-  redis-data:
-
 networks:
   talkn-global:
     external: true
