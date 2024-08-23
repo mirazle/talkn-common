@@ -1,0 +1,15 @@
+services:
+  redis:
+    container_name: talkn-ch-server-redis
+    image: redis:6.2
+    volumes:
+      - redis-data:/data
+    networks:
+      - talkn-global
+
+volumes:
+  redis-data:
+
+networks:
+  talkn-global:
+    external: true
