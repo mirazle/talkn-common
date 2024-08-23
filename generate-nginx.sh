@@ -13,7 +13,7 @@ shift
 ALT_NAMES=("$@")
 
 # 証明書ディレクトリの作成
-CERT_BASE_DIR=./nginx
+CERT_BASE_DIR=./ch-configs
 if [ ! -d "$CERT_BASE_DIR" ]; then
   mkdir -p "$CERT_BASE_DIR"
 fi
