@@ -15,7 +15,9 @@ services:
     container_name: talkn-ch-server-io-${container_name_ch}
     image: node:22.2.0
     depends_on:
-      - talkn-ch-server-redis
+      - redis
+    external_links:
+      - talkn-ch-server-redis:redis
     working_dir: /app
     volumes:
       - .:/app
