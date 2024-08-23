@@ -1,0 +1,38 @@
+services:
+  redis:
+    container_name: talkn-ch-server-redis
+    image: redis:6.2
+    volumes:
+      - redis-data:/data
+    networks:
+      - talkn-global
+
+  io-bb.com:
+    container_name: talkn-ch-server-io-bb.com
+    image: node:22.2.0
+    depends_on:
+      - redis
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ~/talkn-ch-gateway/common/ch-configs/bb.com/openssl.crt:/etc/ssl/certs/openssl.crt
+      - ~/talkn-ch-gateway/common/ch-configs/bb.com/openssl.key:/etc/ssl/certs/openssl.key
+    command: sh -c "npm install && npm run dev"
+
+    environment:
+      - IS_DOCKER=true
+      - TOP_CONNECTION=/bb.com/
+      - NODE_ENV=development
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    networks:
+      - talkn-global
+
+volumes:
+  redis-data:
+
+networks:
+  talkn-global:
+    external: true
+
