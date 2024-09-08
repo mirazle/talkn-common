@@ -10,6 +10,11 @@
     "cluster": []
   },
   "accept": { "rankAll": false },
+  "payjp": {},
+  "service": {
+    "type": "Lightsail",
+    "plan": {}
+  },
   "children": [
     {
       "gateway": { "host": "localhost", "port": 10001 },
@@ -23,6 +28,11 @@
         "cluster": []
       },
       "accept": { "rankAll": false },
+      "payjp": {},
+      "service": {
+        "type": "Lightsail",
+        "plan": {}
+      },
       "children": [
         {
           "gateway": null,
@@ -36,6 +46,11 @@
             "cluster": []
           },
           "accept": { "rankAll": false },
+          "payjp": {},
+          "service": {
+            "type": "Lightsail",
+            "plan": {}
+          },
           "children": []
         }
       ]
@@ -52,6 +67,11 @@
         "cluster": []
       },
       "accept": { "rankAll": false },
+      "payjp": {},
+      "service": {
+        "type": "Lightsail",
+        "plan": {}
+      },
       "children": [
         {
           "gateway": null,
@@ -65,6 +85,11 @@
             "cluster": []
           },
           "accept": { "rankAll": false },
+          "payjp": {},
+          "service": {
+            "type": "Lightsail",
+            "plan": {}
+          },
           "children": [
             {
               "gateway": null,
@@ -78,6 +103,11 @@
                 "cluster": []
               },
               "accept": { "rankAll": false },
+              "payjp": {},
+              "service": {
+                "type": "Lightsail",
+                "plan": {}
+              },
               "children": []
             }
           ]
@@ -96,6 +126,11 @@
         "cluster": []
       },
       "accept": { "rankAll": false },
+      "payjp": {},
+      "service": {
+        "type": "Lightsail",
+        "plan": {}
+      },
       "children": []
     },
     {
@@ -110,6 +145,11 @@
         "cluster": []
       },
       "accept": { "rankAll": false },
+      "payjp": {},
+      "service": {
+        "type": "Lightsail",
+        "plan": {}
+      },
       "children": [
         {
           "gateway": null,
@@ -123,6 +163,11 @@
             "cluster": []
           },
           "accept": { "rankAll": false },
+          "payjp": {},
+          "service": {
+            "type": "Lightsail",
+            "plan": {}
+          },
           "children": [
             {
               "gateway": null,
@@ -136,6 +181,11 @@
                 "cluster": []
               },
               "accept": { "rankAll": false },
+              "payjp": {},
+              "service": {
+                "type": "Lightsail",
+                "plan": {}
+              },
               "children": []
             }
           ]
